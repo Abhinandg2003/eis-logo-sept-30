@@ -4,6 +4,7 @@ import { MotionProvider } from "@/components/MotionProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { site } from "@/lib/site";
+import { IntroStrips } from "@/components/layout/IntroStrips";
 import "./globals.css";
 
 // Self-hosted at build time by next/font: no layout shift, no external request.
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body className="bg-white font-sans text-neutral-900 antialiased">
         <MotionProvider>
+          <IntroStrips />   {/* add this line */}
           <Navbar />
           <main className="pt-16">{children}</main>
           <Footer />
