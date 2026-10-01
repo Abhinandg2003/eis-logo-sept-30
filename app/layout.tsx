@@ -20,7 +20,7 @@ export const viewport: Viewport = { themeColor: "#ffffff", width: "device-width"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`intro-lock ${display.variable} ${body.variable}`}>
       <body className="bg-white font-sans text-neutral-900 antialiased">
         <MotionProvider>
           <IntroStrips />   {/* add this line */}

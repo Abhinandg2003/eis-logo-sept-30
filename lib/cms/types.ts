@@ -4,6 +4,9 @@ export type Insight = {
   title: string;
   excerpt: string;
   category: string;
+  // gradient: string;
+  image: string;
+  word: string,
   author: string;
   publishedAt: string; // ISO date
   readingMinutes: number;

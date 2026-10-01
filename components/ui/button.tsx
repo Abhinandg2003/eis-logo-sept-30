@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         brand: "bg-brand text-white hover:bg-brand-ink",
         dark: "bg-neutral-900 text-white hover:bg-neutral-700",
-        outline: "border border-neutral-300 text-neutral-900 hover:bg-neutral-100",
+        outline: " bg-[var(--color-brand)]/10 text-black hover:bg-[var(--color-brand)]/15",
       },
       size: { sm: "h-9 px-4 text-sm ", md: "h-11 px-6 text-sm sm:text-base font-light", nav:"h-10 px-6 py-4 text-[14px] sm:text-[14px] font-light" },
     },

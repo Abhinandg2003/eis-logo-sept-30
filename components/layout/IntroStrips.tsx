@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { m } from "framer-motion"; // `m` works because MotionProvider (LazyMotion) wraps the app
 
 // ---------- TWEAK THESE ----------
@@ -14,6 +14,15 @@ const STRIP_DURATION = INTRO_TOTAL - STAGGER * (STRIPS - 1);
 // Full-screen overlay of brand-colour strips. Each strip shrinks toward the bottom edge, left to right.
 export function IntroStrips() {
   const [done, setDone] = useState(false);
+
+  // Safety: if the component ever unmounts early, never leave the page locked
+  useEffect(() => () => document.documentElement.classList.remove("intro-lock"), []);
+
+  // Called when the last strip finishes: unlock scrolling, and the scrollbar appears
+  const finish = () => {
+    document.documentElement.classList.remove("intro-lock");
+    setDone(true);
+  };
   if (done) return null; // remove from the DOM once finished
 
   return (
@@ -32,7 +41,7 @@ export function IntroStrips() {
           initial={{ scaleY: 1 }}
           animate={{ scaleY: 0 }}
           transition={{ duration: STRIP_DURATION, delay: i * STAGGER, ease: EASE }}
-          onAnimationComplete={i === STRIPS - 1 ? () => setDone(true) : undefined}
+          onAnimationComplete={i === STRIPS - 1 ? finish : undefined}
         />
       ))}
     </div>
