@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ScenarioDemo } from "@/components/home/ScenarioDemo";
 import { InsightCard } from "@/components/insights/InsightCard";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { insights } from "@/lib/cms";
@@ -13,8 +12,6 @@ import { IoMdCheckmark } from "react-icons/io";
 import { RollingNumber } from "@/components/home/RollingNumber";
 import ArrowButton from "@/components/ui/Arrowbutton";
 import { LogoMarquee } from "@/components/home/LogoMarquee";
-import { HeroDemoProvider, HeroPills, HeroPanel } from "@/components/home/HeroDemo";
-
 
 import { BentoGrid, type BentoItem } from "@/components/home/bento";
 import { FiHeart, FiTrendingUp, FiUsers } from "react-icons/fi";
@@ -23,6 +20,7 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { GrGrow } from "react-icons/gr";
 import { GiAbstract030 } from "react-icons/gi";
 import { TestimonialCarousel } from "@/components/home/TestimonialCarousel";
+import { AvatarPath } from "@/components/home/AvatarPath";
 
 const items: BentoItem[] = [
   {
@@ -32,8 +30,9 @@ const items: BentoItem[] = [
     image: "/images/bento/engagement.png",
     bg: "#CAF5EF",
     color: "#003d3d",
-frame: "linear-gradient(180deg, #7FE0D280, #CAF5EF)",
-    arrow: "#9FE6DB",    span: "md:col-span-3 md:row-span-3",
+    frame: "linear-gradient(180deg, #7FE0D280, #CAF5EF)",
+    arrow: "#9FE6DB",
+    span: "md:col-span-3 md:row-span-3",
   },
   {
     title: "Goals & OKRs",
@@ -42,8 +41,9 @@ frame: "linear-gradient(180deg, #7FE0D280, #CAF5EF)",
     image: "/images/bento/grow.png",
     bg: "#F4F8DE",
     color: "#515c0b",
-frame: "linear-gradient(180deg, #DBEB7A80, #F4F8DE)",
-    arrow: "#DBEB7A",    span: "md:col-span-3 md:row-span-3",
+    frame: "linear-gradient(180deg, #DBEB7A80, #F4F8DE)",
+    arrow: "#DBEB7A",
+    span: "md:col-span-3 md:row-span-3",
   },
   {
     title: "Engagements",
@@ -63,9 +63,9 @@ frame: "linear-gradient(180deg, #DBEB7A80, #F4F8DE)",
     image: "/images/bento/comp.png",
     bg: "#FFF7D6",
     color: "#a36a14",
-frame: "linear-gradient(180deg, #FFDD9980, #FFF7D6)",
+    frame: "linear-gradient(180deg, #FFDD9980, #FFF7D6)",
     arrow: "#FFDD99",
-        span: "md:col-span-2 md:row-span-2",
+    span: "md:col-span-2 md:row-span-2",
   },
 
   {
@@ -75,8 +75,9 @@ frame: "linear-gradient(180deg, #FFDD9980, #FFF7D6)",
     image: "/images/bento/comp.png",
     bg: "#D9F8D6",
     color: "#2a4e1c",
-frame: "linear-gradient(180deg, #A9EBA980, #D9F8D6)",
-    arrow: "#A9EBA9",    span: "md:col-span-2 md:row-span-2",
+    frame: "linear-gradient(180deg, #A9EBA980, #D9F8D6)",
+    arrow: "#A9EBA9",
+    span: "md:col-span-2 md:row-span-2",
   },
 ];
 
@@ -197,10 +198,8 @@ export default async function Home() {
   return (
     <>
       {/* Hero: text + interactive scenario */}
-      <section className="section  !h-screen !flex !justify-center !items-center !pt-0 sm:!pt-0 !pb-20">
-        {/* <div className="h-[140vh] absolute top-0 opacity-10 w-full bg-[radial-gradient(ellipse_100%_100%_at_50%_0%,#FFA022_0%,#FFA022_10%,#fff_70%)]" /> */}
-        <HeroDemoProvider>        <div className="container-x !grid !grid-cols-2  items-start gap-12  !h-full py-10 lg:grid-cols-2 lg:gap-16  justify-center mx-auto">
-          <div className=" !flex !flex-col !items-start !justify-start pt-5">
+<section className="section overflow-x-clip !h-screen !flex !justify-center !items-center !pt-0 sm:!pt-0 !pb-20">        <div className="container-x  !grid !grid-cols-2 items-start gap-12 !h-full py-10 lg:grid-cols-2 lg:gap-16 justify-center mx-auto">
+          <div className="!flex !flex-col !items-start !justify-start pt-5">
             <h1 className="h-display !font-normal leading-[4rem] !flex !justify-center rise">
               Measure how people decide, not just what they know.
             </h1>
@@ -208,11 +207,9 @@ export default async function Home() {
               className="lead !text-black !text-start max-w-[500px] rise mt-6"
               style={delay(1)}
             >
-              {site.fullName} Measure how employees make smarter decisions, improve performance, and contribute to better business outcomes.
+              {site.fullName} Measure how employees make smarter decisions,
+              improve performance, and contribute to better business outcomes.
             </p>
-
-            <HeroPills className="rise mt-6" />   {/* NEW */}
-
 
             <div
               className="rise mt-8 mb-5 flex flex-wrap gap-3"
@@ -230,12 +227,14 @@ export default async function Home() {
               No credit card needed ✦ Unlimited time on Free plan
             </p>
           </div>
-          <div className="rise h-full relative flex px-10 justify-center items-center w-full rounded-4xl" style={delay(3)}>
-  <HeroPanel />   {/* was <ScenarioDemo /> */}
-</div>
-        </div>
-        </HeroDemoProvider>
 
+          <div
+            className="rise h-full relative flex justify-center items-center w-full"
+            style={delay(3)}
+          >
+            <AvatarPath />
+          </div>
+        </div>
       </section>
 
       <section className="pb-16">
@@ -362,10 +361,9 @@ export default async function Home() {
         </div>
       </section>
 
-
       <section className="py-20">
-  <TestimonialCarousel />
-</section>
+        <TestimonialCarousel />
+      </section>
 
       {/* Latest insights (from CMS layer) */}
       <section className="section  !pt-0 ">
@@ -402,9 +400,7 @@ export default async function Home() {
                 className="flex min-h-[60vh] w-full flex-col gap-4 rounded-xl border border-black/10 p-[3vw]"
               >
                 <h3 className="text-start text-2xl text-black">{plan.title}</h3>
-                <p className="text-md w-full  pb-7">
-                  {plan.intro}
-                </p>
+                <p className="text-md w-full  pb-7">{plan.intro}</p>
 
                 {/* The list sits between the heading and the CTA */}
                 <ul className="flex flex-col gap-3 pt-3">
