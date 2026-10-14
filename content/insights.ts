@@ -8,7 +8,7 @@ export const insightsData: Insight[] = [
     title: "Why the best scenario questions have no right answer",
     excerpt: "Trivia tests recall. Scenarios reveal priorities, and priorities are what shape how someone works.",
     category: "Method",
-    author: "EIS Team", // PLACEHOLDER
+    author: "EIF Team", // PLACEHOLDER
     publishedAt: "2026-09-15",
     readingMinutes: 5,
     image:"/images/gradients/1.jpg",
@@ -24,7 +24,7 @@ export const insightsData: Insight[] = [
     title: "Reading a score as an employer: patterns, not verdicts",
     excerpt: "A single response says little. A pattern across scenarios says a lot about how a team works.",
     category: "Employers",
-    author: "EIS Team",
+    author: "EIF Team",
     publishedAt: "2026-09-02",
     readingMinutes: 4,
     image:"/images/gradients/2.jpg",
@@ -36,7 +36,7 @@ export const insightsData: Insight[] = [
     title: "What your answers say about you (and what they don't)",
     excerpt: "Employees see the same score, framed for reflection and growth instead of ranking.",
     category: "Employees",
-    author: "EIS Team",
+    author: "EIF Team",
     publishedAt: "2026-08-20",
     readingMinutes: 4,
     image:"/images/gradients/3.jpg",
@@ -50,7 +50,7 @@ export const insightsData: Insight[] = [
   excerpt:
     "Pressure changes what we notice, prioritise, and choose. Scenarios make those patterns visible.",
   category: "Method",
-  author: "EIS Team",
+  author: "EIF Team",
   publishedAt: "2026-08-08",
   readingMinutes: 5,
   image:"/images/gradients/4.jpg",

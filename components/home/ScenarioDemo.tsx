@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { CountUp } from "@/components/reactbits/CountUp";
 
 // PLACEHOLDER CONTENT: sample scenario and scores. Later, load from your scoring engine / CMS.
-const DIMENSIONS = ["Ownership", "Collaboration", "Judgment"];
+const DIMENSIONS = ["capability", "Contextual", "Behavioural"];
 const SCENARIO = "A teammate presents your work as theirs in front of the director. Launch is on Friday. What do you do?";
 const OPTIONS = [
   { label: "Talk to them privately after the meeting", scores: [72, 84, 78],

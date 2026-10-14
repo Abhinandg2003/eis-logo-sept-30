@@ -11,6 +11,74 @@ import { ScrollPoints } from "@/components/home/ScrollPoints";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoMdCheckmark } from "react-icons/io";
 import { RollingNumber } from "@/components/home/RollingNumber";
+import ArrowButton from "@/components/ui/Arrowbutton";
+import { LogoMarquee } from "@/components/home/LogoMarquee";
+import { HeroDemoProvider, HeroPills, HeroPanel } from "@/components/home/HeroDemo";
+
+
+import { BentoGrid, type BentoItem } from "@/components/home/bento";
+import { FiHeart, FiTrendingUp, FiUsers } from "react-icons/fi";
+import { RiTargetLine } from "react-icons/ri";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { GrGrow } from "react-icons/gr";
+import { GiAbstract030 } from "react-icons/gi";
+import { TestimonialCarousel } from "@/components/home/TestimonialCarousel";
+
+const items: BentoItem[] = [
+  {
+    title: "Performance",
+    subtitle: "Survey smarter with AI-powered insights.",
+    icon: <FiTrendingUp />,
+    image: "/images/bento/engagement.png",
+    bg: "#CAF5EF",
+    color: "#003d3d",
+frame: "linear-gradient(180deg, #7FE0D280, #CAF5EF)",
+    arrow: "#9FE6DB",    span: "md:col-span-3 md:row-span-3",
+  },
+  {
+    title: "Goals & OKRs",
+    subtitle: "Make career progression clear.",
+    icon: <RiTargetLine />,
+    image: "/images/bento/grow.png",
+    bg: "#F4F8DE",
+    color: "#515c0b",
+frame: "linear-gradient(180deg, #DBEB7A80, #F4F8DE)",
+    arrow: "#DBEB7A",    span: "md:col-span-3 md:row-span-3",
+  },
+  {
+    title: "Engagements",
+    subtitle: "Strategic pay that retains your best.",
+    icon: <FaPeopleGroup />,
+    image: "/images/bento/comp.png",
+    bg: "#FEEDFF",
+    color: "#7a2251",
+    frame: "linear-gradient(180deg, #FAB8FF80, #FEEDFF)",
+    arrow: "#FAB8FF",
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    title: "Grow",
+    subtitle: "Strategic pay that retains your best.",
+    icon: <GrGrow />,
+    image: "/images/bento/comp.png",
+    bg: "#FFF7D6",
+    color: "#a36a14",
+frame: "linear-gradient(180deg, #FFDD9980, #FFF7D6)",
+    arrow: "#FFDD99",
+        span: "md:col-span-2 md:row-span-2",
+  },
+
+  {
+    title: "Compensation",
+    subtitle: "Strategic pay that retains your best.",
+    icon: <GiAbstract030 />,
+    image: "/images/bento/comp.png",
+    bg: "#D9F8D6",
+    color: "#2a4e1c",
+frame: "linear-gradient(180deg, #A9EBA980, #D9F8D6)",
+    arrow: "#A9EBA9",    span: "md:col-span-2 md:row-span-2",
+  },
+];
 
 const values = [
   {
@@ -74,13 +142,12 @@ const ctaStyles: Record<string, string> = {
   brand: "bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-ink)]",
 };
 
-
 // Cards in "Choose how to get started". Edit the copy here, not in the JSX.
 const plans = [
   {
     title: "Build on your own",
     intro: "Launch your AI-powered product with:",
-    ctas:   [{ label: "Book a demo", href: "#", variant: "brand" }],
+    ctas: [{ label: "Book a demo", href: "#", variant: "brand" }],
     href: "#", // PLACEHOLDER
     points: [
       "Access to all Grok models",
@@ -93,9 +160,9 @@ const plans = [
     title: "Work with our team", // PLACEHOLDER
     intro: "Scale with enterprise support and security:", // PLACEHOLDER
     ctas: [
-  { label: "Contact sales", href: "#", variant: "dark" }   // PLACEHOLDER
-     // PLACEHOLDER
-],
+      { label: "Contact sales", href: "#", variant: "dark" }, // PLACEHOLDER
+      // PLACEHOLDER
+    ],
     points: [
       "Dedicated onboarding support",
       "Custom rate limits",
@@ -117,60 +184,70 @@ const delay = (n: number) => ({ "--i": n }) as React.CSSProperties; // stagger f
 export default async function Home() {
   const latest = (await insights.list()).slice(0, 4); // CMS provider (static for now)
 
+  // <div className="flex gap-2 relative items-center pl-3 pr-[0.4rem] py-[0.4rem] border border-black/8 rounded-full mb-10">
+  //             <p className="rounded-full bg-[var(--color-brand)]/10 text-[0.8rem] text-[var(--color-brand)] px-2">
+  //               New
+  //             </p>
+  //             <p className="flex items-center gap-2 text-center text-[0.9rem] ">
+  //               Meet Ei 1.1 <span className="font-light">Our new model</span>{" "}
+  //               <MdOutlineArrowOutward className="bg-black/5 h-[25px] w-[25px] rounded-full p-[0.4rem] text-sm " />
+  //             </p>
+  //           </div>
+
   return (
     <>
       {/* Hero: text + interactive scenario */}
-      <section className="section h-auto !pt-0 sm:!pt-0 !pb-0">
+      <section className="section  !h-screen !flex !justify-center !items-center !pt-0 sm:!pt-0 !pb-20">
         {/* <div className="h-[140vh] absolute top-0 opacity-10 w-full bg-[radial-gradient(ellipse_100%_100%_at_50%_0%,#FFA022_0%,#FFA022_10%,#fff_70%)]" /> */}
-        <div className="container-x flex flex-col items-center gap-12 pt-10 lg:grid-cols-2 lg:gap-16  justify-center mx-auto">
-          <div className=" !flex !flex-col !items-center !justify-center pt-5">
-            <div className="flex gap-2 relative items-center pl-3 pr-[0.4rem] py-[0.4rem] border border-black/8 rounded-full mb-10">
-              <p className="rounded-full bg-[var(--color-brand)]/10 text-[0.8rem] text-[var(--color-brand)] px-2">
-                New
-              </p>
-              <p className="flex items-center gap-2 text-center text-[0.9rem] ">
-                Meet Ei 1.1 <span className="font-light">Our new model</span>{" "}
-                <MdOutlineArrowOutward className="bg-black/5 h-[25px] w-[25px] rounded-full p-[0.4rem] text-sm " />
-              </p>
-            </div>
-            <h1 className="h-display !text-center !flex !justify-center rise">
+        <HeroDemoProvider>        <div className="container-x !grid !grid-cols-2  items-start gap-12  !h-full py-10 lg:grid-cols-2 lg:gap-16  justify-center mx-auto">
+          <div className=" !flex !flex-col !items-start !justify-start pt-5">
+            <h1 className="h-display !font-normal leading-[4rem] !flex !justify-center rise">
               Measure how people decide, not just what they know.
             </h1>
             <p
-              className="lead !text-black text-center rise mt-6"
+              className="lead !text-black !text-start max-w-[500px] rise mt-6"
               style={delay(1)}
             >
-              {site.fullName} Measure how people make better decisions.
+              {site.fullName} Measure how employees make smarter decisions, improve performance, and contribute to better business outcomes.
             </p>
+
+            <HeroPills className="rise mt-6" />   {/* NEW */}
+
+
             <div
-              className="rise mt-8 mb-10 flex flex-wrap gap-3"
+              className="rise mt-8 mb-5 flex flex-wrap gap-3"
               style={delay(2)}
             >
-              <Button className="group" asChild>
-                <Link href={site.cta.href}>
-                  {site.cta.label}{" "}
-                  <span className="ml-1 my-auto justify-center flex items-center">
-                    {" "}
-                    <IoIosArrowRoundForward className="group-hover:translate-x-1 ease-out transition-all duration-200" />
-                  </span>
-                </Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/insights">Read insights</Link>
-              </Button>
+              <ArrowButton href={site.cta.href} className="btn-wave">
+                {site.cta.label}
+              </ArrowButton>
+              <ArrowButton href="/insights" variant="ghost">
+                Read insights
+              </ArrowButton>
             </div>
 
-            <div className="w-[70%] rounded-3xl h-[60vh] mt-10  overflow-hidden">
-              <img
-                src="/images/hero.jpg"
-                className="w-full object-cover "
-                alt=""
-              />
-            </div>
+            <p className="lead !text-black/60 !font-light !text-[15px] !text-start rise">
+              No credit card needed ✦ Unlimited time on Free plan
+            </p>
           </div>
-          <div className="rise" style={delay(3)}>
-            {/* <ScenarioDemo /> */}
-          </div>
+          <div className="rise h-full relative flex px-10 justify-center items-center w-full rounded-4xl" style={delay(3)}>
+  <HeroPanel />   {/* was <ScenarioDemo /> */}
+</div>
+        </div>
+        </HeroDemoProvider>
+
+      </section>
+
+      <section className="pb-16">
+        <p className="mb-15 text-center text-lg text-black ">
+          Trusted by teams at
+        </p>
+        <LogoMarquee />
+      </section>
+
+      <section className="h-screen mx-auto flex justify-center items-center  max-w-[90vw] ">
+        <div className="w-full mx-8">
+          <BentoGrid items={items} />
         </div>
       </section>
 
@@ -196,7 +273,7 @@ export default async function Home() {
       </section> */}
 
       {/* How it works: a real sequence, so numbering is meaningful here */}
-      <div className="my-5 mx-auto !max-w-[90vw]">
+      {/* <div className="my-5 mx-auto !max-w-[90vw]">
         <section className="section h-[80vh]  !mx-auto flex items-center">
           <div className="container-x !px-0">
             <div className="grid grid-cols-2 w-full ">
@@ -207,7 +284,6 @@ export default async function Home() {
                 <h2 className="h-section !text-start !text-5xl font-normal">
                   One Test <br /> Every Aspect
                 </h2>
-                {/* <ScrollPoints points={three} /> */}
 
                 <p className="text-md text-black mt-5 pr-40">
                   Text, code, voice, images, and video — all through a single
@@ -266,24 +342,29 @@ export default async function Home() {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
 
-      <section className="max-w-[80vw] mb-40 mx-auto">
-  <div className="flex justify-between border-y border-black/10 py-10">
-    {stats.map((s, i) => (
-      <div
-        key={s.label}
-        // The first column has no left border or padding; the others keep your divider
-        className={`flex min-w-[25vw] flex-col justify-start gap-3 ${i > 0 ? "border-l border-black/10 pl-10" : ""}`}
-      >
-        {/* text-5xl sets the size. The roll scales with it automatically */}
-        <p className="text-5xl">
-          <RollingNumber value={s.value} delay={i * 0.15} />
-        </p>
-        <p className="text-[0.9rem] text-black/70">{s.label}</p>
-      </div>
-    ))}
-  </div>
+      <section className="max-w-[80vw] my-[5rem] mb-40 mx-auto">
+        <div className="flex justify-between border-y border-black/10 py-10">
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              // The first column has no left border or padding; the others keep your divider
+              className={`flex min-w-[25vw] flex-col justify-start gap-3 ${i > 0 ? "border-l border-black/10 pl-10" : ""}`}
+            >
+              {/* text-5xl sets the size. The roll scales with it automatically */}
+              <p className="text-5xl">
+                <RollingNumber value={s.value} delay={i * 0.15} />
+              </p>
+              <p className="text-[0.9rem] text-black/70">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
+      <section className="py-20">
+  <TestimonialCarousel />
 </section>
 
       {/* Latest insights (from CMS layer) */}
@@ -315,41 +396,49 @@ export default async function Home() {
           </h2>
 
           <div className="flex flex-col gap-5 md:flex-row">
-  {plans.map((plan) => (
-    <div
-      key={plan.title}
-      className="flex min-h-[60vh] w-full flex-col gap-4 rounded-xl bg-[#F9F8F6] p-[3vw]"
-    >
-      <h3 className="text-start text-2xl text-black">{plan.title}</h3>
-      <p className="text-md w-full border-b border-black/10 pb-7">{plan.intro}</p>
+            {plans.map((plan) => (
+              <div
+                key={plan.title}
+                className="flex min-h-[60vh] w-full flex-col gap-4 rounded-xl border border-black/10 p-[3vw]"
+              >
+                <h3 className="text-start text-2xl text-black">{plan.title}</h3>
+                <p className="text-md w-full  pb-7">
+                  {plan.intro}
+                </p>
 
-      {/* The list sits between the heading and the CTA */}
-      <ul className="flex flex-col gap-3 pt-3">
-        {plan.points.map((pt) => (
-          <li key={pt} className="flex items-start gap-3 text-[0.9rem] text-black font-light">
-            {/* Tick before each point. Change the colour class to text-black for pure monochrome */}
-            <IoMdCheckmark aria-hidden className="mt-1 shrink-0 text-black/30" />
-            {pt}
-          </li>
-        ))}
-      </ul>
+                {/* The list sits between the heading and the CTA */}
+                <ul className="flex flex-col gap-3 pt-3">
+                  {plan.points.map((pt) => (
+                    <li
+                      key={pt}
+                      className="flex items-start gap-3 text-[0.9rem] text-black font-light"
+                    >
+                      {/* Tick before each point. Change the colour class to text-black for pure monochrome */}
+                      <IoMdCheckmark
+                        aria-hidden
+                        className="mt-1 shrink-0 text-black/30"
+                      />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
 
-      {/* mt-auto pushes the CTA to the bottom of the card */}
-      {/* mt-auto keeps the buttons at the bottom of the card */}
-<div className="mt-auto flex flex-col gap-2">
-  {plan.ctas.map((c) => (
-    <a
-      key={c.label}
-      href={c.href}
-      className={`w-full rounded-full px-[18px] py-[10px] text-center text-[.875rem] transition-colors ${ctaStyles[c.variant]}`}
-    >
-      {c.label}
-    </a>
-  ))}
-</div>
-    </div>
-  ))}
-</div>
+                {/* mt-auto pushes the CTA to the bottom of the card */}
+                {/* mt-auto keeps the buttons at the bottom of the card */}
+                <div className="mt-auto flex flex-col gap-2">
+                  {plan.ctas.map((c) => (
+                    <a
+                      key={c.label}
+                      href={c.href}
+                      className={`w-full rounded-[10px] px-[18px] py-[10px] text-center text-[.875rem] transition-colors ${ctaStyles[c.variant]}`}
+                    >
+                      {c.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+
+
+
+
 /* Design tokens. Brand colour is used sparingly (~20-30%); the rest is neutral. */
 @theme inline {
   --color-brand: #6161ff;
@@ -16,12 +20,269 @@
   --sb-radius: 0px; /* corner roundness: 0px = square, 3px = hard/small, 99px = pill */
 }
 
+/* ================= Arrow button set (paste at the bottom of globals.css) ================= */
+
+:root {
+  --brand: #0069ff;
+  --ink: #1d1d1f;
+  --line: #e8e8ed;
+  --surface: #f5f5f7;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+
+
+@layer components {
+  /* Base button */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 15px;
+    padding: 0.75rem 1.5rem;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.5s var(--ease);
+  }
+  .btn:active { transform: scale(0.97); }
+
+  /* Variants */
+  .btn-primary { background: var(--brand); color: #fff; }
+  .btn-primary:hover {  }
+
+  .btn-ghost { background: #ffffff00; color: var(--brand); border: 1px solid var(--brand); }
+  .btn-ghost:hover {  }
+
+  /* Arrow swap: right arrow slides out, left arrow slides in on hover */
+  .btn-arrow { gap: 0; overflow: hidden; }
+
+  .btn-arrow__icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: width 0.55s var(--ease), opacity 0.55s var(--ease), transform 0.55s var(--ease);
+  }
+  .btn-arrow__icon--in  { width: 0;    opacity: 0; transform: translateX(-14px); }
+  .btn-arrow__icon--out { width: 24px; opacity: 1; transform: none; justify-content: flex-end; }
+
+  .btn-arrow:hover .btn-arrow__icon--in  { width: 24px; opacity: 1; transform: none; }
+  .btn-arrow:hover .btn-arrow__icon--out { width: 0;    opacity: 0; transform: translateX(14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn-arrow__icon { transition: none !important; }
+}
+
+
+/* ================= Testimonial carousel progress ================= */
+@keyframes carousel-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* no autoplay: the active pill just shows as full */
+  .carousel-fill { animation: none !important; transform: scaleX(1); }
+}
+
+
+
+/* ================= Orb swoosh for the primary button ================= */
+
+/* Lets the browser animate a plain number (progress 0 -> 1 over the whole cycle) */
+@property --orb-t {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+:root {
+  --orb-base: #6161ff;
+  --orb-1: rgb(254 155 11 / 0.85);
+  --orb-2: rgb(255 129 228 / 0.85);
+  --orb-size: 350px;
+  --orb-sweep: 1.3;   /* seconds the orb is moving (plain number, no "s") */
+  --orb-rest: 4;    /* seconds of rest between sweeps (plain number, no "s") */
+  --orb-delay: 2s;  /* wait before the very first sweep */
+}
+
+@layer components {
+  .btn-wave {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--orb-base);
+    color: #fff;
+  }
+
+  .btn-wave::before {
+    /* progress through the sweep only: 0 -> 1, then holds at 1 during the rest */
+    --p: clamp(0, var(--orb-t) * (var(--orb-sweep) + var(--orb-rest)) / var(--orb-sweep), 1);
+    /* ease in-out (smoothstep) applied to that progress */
+    --s: calc(var(--p) * var(--p) * (3 - 2 * var(--p)));
+
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    width: var(--orb-size);
+    height: var(--orb-size);
+    top: 50%;
+    translate: 0 -50%;
+    /* from fully off the left edge to fully off the right edge */
+    left: calc(var(--orb-size) * -1 + (100% + var(--orb-size)) * var(--s));
+    background: radial-gradient(
+      circle closest-side,
+      var(--orb-1) 0%,
+      var(--orb-2) 50%,
+      rgb(97 97 255 / 0) 100%
+    );
+    animation: orb-cycle calc((var(--orb-sweep) + var(--orb-rest)) * 1s) linear var(--orb-delay) infinite both;
+  }
+}
+
+@keyframes orb-cycle {
+  from { --orb-t: 0; }
+  to   { --orb-t: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-wave::before { animation: none; }
+}
 
 /* Keep the scrollbar's space reserved so the page doesn't jump when it appears */
 html { scrollbar-gutter: stable; }
 
+
+
+
+/* ================= Rotating pastel gradient div ================= */
+
+:root {
+  --aurora-speed: 24s;      /* one full rotation (higher = slower) */
+  --aurora-blur: 60px;      /* higher = softer, more blended */
+  --aurora-1: #ff9ec7;      /* pink */
+  --aurora-2: #ffd27a;      /* sunny peach */
+  --aurora-3: #8ff0c0;      /* mint */
+  --aurora-4: #8fd3ff;      /* sky */
+  --aurora-5: #c3a6ff;      /* lavender */
+}
+
+@layer components {
+  .aurora {
+    position: relative;
+    isolation: isolate;       /* keeps the layers behind your content */
+    overflow: hidden;         /* clips the gradient to the div */
+    border-radius: 1.5rem;
+    background: #fff;
+  }
+
+  /* Layer 1: big conic gradient, rotating clockwise */
+  .aurora::before {
+    content: "";
+    position: absolute;
+    inset: -150%;             /* oversized so the corners never show while rotating */
+    z-index: -2;
+    pointer-events: none;
+    background: conic-gradient(
+      from 0deg,
+      var(--aurora-1), var(--aurora-2), var(--aurora-3),
+      var(--aurora-4), var(--aurora-5), var(--aurora-1)
+    );
+    filter: blur(var(--aurora-blur)) saturate(1.15);
+    animation: aurora-spin var(--aurora-speed) linear infinite;
+  }
+
+  /* Layer 2: soft light blobs, rotating the other way for depth */
+  .aurora::after {
+    content: "";
+    position: absolute;
+    inset: -150%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 35% 40%, rgb(255 255 255 / 0.55), transparent 18%),
+      radial-gradient(circle at 68% 62%, rgb(255 255 255 / 0.4), transparent 22%);
+    filter: blur(30px);
+    animation: aurora-spin calc(var(--aurora-speed) * 1.6) linear infinite reverse;
+  }
+
+  @keyframes aurora-spin {
+    to { transform: rotate(360deg); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora::before, .aurora::after { animation: none; }
+}
+
+
+/* ================= Rotating mesh gradient div ================= */
+
+:root {
+  --aurora-speed: 30s;      /* one full rotation (higher = slower) */
+  --aurora-blur: 40px;      /* higher = softer blend */
+  --aurora-lime: #c9fb5e;
+  --aurora-mint: #a6f0c2;
+  --aurora-cyan: #5ee6f0;
+  --aurora-lavender: #f1dcff;
+  --aurora-pink: #f7d6ea;
+  --aurora-base: #dff3ee;   /* shows between the blobs */
+}
+
+@layer components {
+  .aurora {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;         /* clips the gradient to the div */
+    border-radius: 2.5rem;
+    background: var(--aurora-base);
+  }
+
+  /* Main layer: four color blobs orbiting the center */
+  .aurora::before {
+    content: "";
+    position: absolute;
+    inset: -75%;              /* oversized so corners never show while rotating */
+    z-index: -2;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 22% 22% at 38% 36%, var(--aurora-lime), transparent),
+      radial-gradient(ellipse 22% 22% at 63% 37%, var(--aurora-mint), transparent),
+      radial-gradient(ellipse 24% 24% at 37% 65%, var(--aurora-cyan), transparent),
+      radial-gradient(ellipse 24% 24% at 62% 66%, var(--aurora-lavender), transparent),
+      var(--aurora-base);
+    filter: blur(var(--aurora-blur)) saturate(1.1);
+    animation: aurora-spin var(--aurora-speed) linear infinite;
+  }
+
+  /* Second layer: soft pink glow, rotating the other way for depth */
+  .aurora::after {
+    content: "";
+    position: absolute;
+    inset: -75%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 18% 18% at 50% 58%, var(--aurora-pink), transparent),
+      radial-gradient(ellipse 14% 14% at 52% 36%, rgb(255 255 255 / 0.5), transparent);
+    filter: blur(30px);
+    animation: aurora-spin calc(var(--aurora-speed) * 1.5) linear infinite reverse;
+  }
+
+  @keyframes aurora-spin {
+    to { transform: rotate(360deg); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora::before, .aurora::after { animation: none; }
+}
 /* During the intro: no scrolling, no scrollbar, and the reserved space is brand-coloured */
-html.intro-lock { overflow: hidden; background: #6161ff; }
+html.intro-lock { overflow: hidden; background: #111; }
 
 
 /* Chrome, Edge, Safari */
@@ -37,10 +298,65 @@ html.intro-lock { overflow: hidden; background: #6161ff; }
 
 
 
+/* ================= Logo marquee ================= */
+
+:root {
+  --marquee-speed: 30s;      /* one full loop (higher = slower) */
+  --logo-w: 200px;           /* every logo gets this exact box */
+  --logo-h: 60px;
+}
+
+@layer components {
+  .logo-marquee {
+    overflow: hidden;
+    width: 100%;
+    /* soft fade on both edges */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  .logo-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: logo-marquee var(--marquee-speed) linear infinite;
+  }
+
+  /* Fixed box = same size for every logo. Spacing is margin (not gap) so the -50% loop is exact */
+  .logo-marquee__item {
+    flex: none;
+    width: var(--logo-w);
+    height: var(--logo-h);
+    margin-inline: calc(var(--logo-space) / 2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-marquee__img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;       /* scales each logo to fit the box without stretching */
+    transition: opacity 0.3s var(--ease), filter 0.3s var(--ease);
+  }
+  .logo-marquee__item:hover .logo-marquee__img { filter: none; opacity: 1; }
+
+  @keyframes logo-marquee {
+    to { transform: translateX(-50%); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee__track { animation: none; }
+}
+
+
+
+
+
 /* GLOBAL CLASSES: reusable building blocks. Tailwind utilities can still override them per element. */
 @layer components {
-  .container-x { @apply mx-auto w-full max-w-[80vw] px-5 sm:px-8; }
-  .section { @apply py-20 ; }
+  .container-x { @apply mx-auto w-full max-w-[90vw] px-5 sm:px-8; }
+  .section { @apply py-10 ; }
   .h-display { @apply font-display text-4xl font-normal tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl; text-wrap: balance; }
   .h-section { @apply font-display text-2xl font-semibold tracking-tight text-neutral-900  sm:text-4xl; text-wrap: balance; }
   .lead { @apply max-w-[60ch] text-base leading-relaxed text-neutral-600 sm:text-lg; }

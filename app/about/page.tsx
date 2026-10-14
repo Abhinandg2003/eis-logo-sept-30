@@ -16,7 +16,7 @@ export default function About() {
     <>
       <section className="section !pb-12">
         <div className="container-x">
-          <h1 className="h-display max-w-[20ch] rise">We built EIS to see what résumés and reviews miss.</h1>
+          <h1 className="h-display max-w-[20ch] rise">We built EIF to see what résumés and reviews miss.</h1>
           <p className="lead rise mt-6" style={{ "--i": 1 } as React.CSSProperties}>
             PLACEHOLDER: Tell the story behind {site.fullName}: who it's for, the problem with how people are assessed today, and what you're changing.
           </p>

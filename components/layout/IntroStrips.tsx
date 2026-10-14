@@ -1,29 +1,34 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { m } from "framer-motion"; // `m` works because MotionProvider (LazyMotion) wraps the app
 
 // ---------- TWEAK THESE ----------
-const INTRO_TOTAL = 1;                    // total seconds for the whole animation
-const STRIPS = 6;                         // number of strips
-const STAGGER = 0.08;                     // delay between one strip and the next (seconds)
-const EASE = [0.76, 0, 0.24, 1] as const; // ease-in-out; try [0.22, 1, 0.36, 1] for a softer landing
-// Each strip's own duration is derived so the LAST strip finishes exactly at INTRO_TOTAL.
-// Keep STAGGER * (STRIPS - 1) smaller than INTRO_TOTAL, or the duration goes negative.
+const INTRO_TOTAL = 1;
+const INTRO_HOLD = 0.8;
+const LOGO_FADE_IN = 0.2;                 // NEW: seconds for the logo to fade in
+const LOGO_FADE_OUT = 0.2;
+const STRIPS = 3;
+const STAGGER = 0.08;
+const EASE = [0.76, 0, 0.24, 1] as const;
 const STRIP_DURATION = INTRO_TOTAL - STAGGER * (STRIPS - 1);
 
-// Full-screen overlay of brand-colour strips. Each strip shrinks toward the bottom edge, left to right.
+// Logo timeline: fade in -> hold -> fade out
+const LOGO_TOTAL = INTRO_HOLD + LOGO_FADE_OUT;
+const LOGO_TIMES = [0, LOGO_FADE_IN / LOGO_TOTAL, INTRO_HOLD / LOGO_TOTAL, 1];
+
+// Logo timeline: fade in -> hold -> fade out, as one keyframe animation
+
 export function IntroStrips() {
   const [done, setDone] = useState(false);
 
-  // Safety: if the component ever unmounts early, never leave the page locked
   useEffect(() => () => document.documentElement.classList.remove("intro-lock"), []);
 
-  // Called when the last strip finishes: unlock scrolling, and the scrollbar appears
   const finish = () => {
     document.documentElement.classList.remove("intro-lock");
     setDone(true);
   };
-  if (done) return null; // remove from the DOM once finished
+  if (done) return null;
 
   return (
     <div
@@ -34,16 +39,39 @@ export function IntroStrips() {
       {Array.from({ length: STRIPS }, (_, i) => (
         <m.div
           key={i}
-          className="h-full bg-brand"
-          // transform-origin at the bottom makes the top edge slide down. The +1px overlap
-          // between neighbours prevents hairline seams (no borders between strips).
+          className="h-full bg-[#111]"
           style={{ transformOrigin: "bottom", width: "calc(100% + 1px)" }}
           initial={{ scaleY: 1 }}
           animate={{ scaleY: 0 }}
-          transition={{ duration: STRIP_DURATION, delay: i * STAGGER, ease: EASE }}
+          transition={{
+            duration: STRIP_DURATION,
+            delay: INTRO_HOLD + i * STAGGER, // strips wait for the hold before moving
+            ease: EASE,
+          }}
           onAnimationComplete={i === STRIPS - 1 ? finish : undefined}
         />
       ))}
+
+      {/* Logo: fades in, holds, then fades out exactly when the strips start */}
+<m.div
+  className="absolute inset-0 flex items-center justify-center"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: [0, 1, 1, 0] }}
+  transition={{
+    duration: LOGO_TOTAL,
+    times: LOGO_TIMES,
+    ease: ["easeOut", "linear", "easeOut"],
+  }}
+>
+  <Image
+    src="/images/eis-icon-white.png"
+    alt=""
+    width={160}
+    height={160}
+    priority
+    className="h-auto w-60 sm:w-50"
+  />
+</m.div>
     </div>
   );
 }
