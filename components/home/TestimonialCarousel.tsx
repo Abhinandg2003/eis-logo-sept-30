@@ -18,22 +18,22 @@ export type Testimonial = {
 
 // PLACEHOLDER CONTENT: edit freely. Add or remove cards here.
 const TESTIMONIALS: Testimonial[] = [
-  { name: "Priya Nair", position: "Head of People, Northwind", photo: "/images/testimonials/1.jpg",
+  { name: "Priya Nair", position: "Head of People, Northwind", photo: "https://img.magnific.com/free-photo/woman-doing-close-up-photoshoot-studio_53876-14476.jpg?semt=ais_hybrid&w=740&q=80",
     quote: "We finally see how our managers decide under pressure, not just what they say in interviews.",
     stat: "42%", statLabel: "42% faster promotion decisions after rolling out EIS", ctaLabel: "Read the story", href: "#" },
-  { name: "Daniel Okafor", position: "VP Operations, Lumen Freight", photo: "/images/testimonials/2.jpg",
+  { name: "Daniel Okafor", position: "VP Operations, Lumen Freight", photo: "https://img.magnific.com/free-photo/young-male-posing-isolated-against-blank-studio-wall_273609-12356.jpg?semt=ais_hybrid&w=740&q=80",
     quote: "The scenarios feel like real Mondays. People engaged with them instead of rushing through a test.",
     stat: "3.1x", statLabel: "3.1x higher completion rate than our old assessment", ctaLabel: "Read the story", href: "#" },
-  { name: "Meera Iyer", position: "CHRO, Kestrel Health", photo: "/images/testimonials/3.jpg",
+  { name: "Meera Iyer", position: "CHRO, Kestrel Health", photo: "https://img.magnific.com/premium-photo/portrait-young-beautiful-cute-cheerful-girl-smiling-gray-wall_136354-3057.jpg?semt=ais_hybrid&w=740&q=80",
     quote: "The results gave our leaders a language for judgement calls. Coaching conversations got specific.",
     stat: "28%", statLabel: "28% drop in regretted hires within the first year", ctaLabel: "Read the story", href: "#" },
-  { name: "Tom Becker", position: "Talent Lead, Arcadia", photo: "/images/testimonials/4.jpg",
+  { name: "Tom Becker", position: "Talent Lead, Arcadia", photo: "https://img.magnific.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_hybrid&w=740&q=80",
     quote: "It surfaced strengths we would have missed on a CV. Two of our best hires came from it.",
     stat: "6 wks", statLabel: "saved 6 weeks per hiring cycle on average", ctaLabel: "Read the story", href: "#" },
-  { name: "Aisha Rahman", position: "COO, Brightpath", photo: "/images/testimonials/5.jpg",
+  { name: "Aisha Rahman", position: "COO, Brightpath", photo: "https://img.magnific.com/premium-photo/headshot-portrait-happy-millennial-indian-woman-look-camera-posing-own-house-apartment-profile-picture-smiling-young-mixed-race-female-renter-tenant-rent-real-estate-concept_656932-3507.jpg?semt=ais_hybrid&w=740&q=80",
     quote: "Employees see their own score as a mirror, not a ranking. That changed how they talk about growth.",
     stat: "91%", statLabel: "91% of employees said the feedback was useful", ctaLabel: "Read the story", href: "#" },
-  { name: "Lucas Martin", position: "Director of L&D, Halden", photo: "/images/testimonials/6.jpg",
+  { name: "Lucas Martin", position: "Director of L&D, Halden", photo: "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
     quote: "Setup took days, not months, and the insights were in front of our leadership team the same week.",
     stat: "5 days", statLabel: "5 days from kickoff to the first team report", ctaLabel: "Read the story", href: "#" },
 ];
@@ -82,7 +82,7 @@ export function TestimonialCarousel({
               onBlurCapture={() => setPaused(false)}
               className={cn(
   "flex h-[60vh] min-h-[360px] flex-none flex-col rounded-3xl border border-[#cfe0ff] bg-[#eaf2ff]/80 p-3",
-  i === index ? "opacity-100" : "opacity-50"
+  i === index ? "bg-[#eaf2ff]/80" : "bg-[#fbeaff]/50"
 )}
               style={{ width: CARD_W, transition: `opacity ${SLIDE_MS}ms ${EASE}` }}
             >

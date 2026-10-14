@@ -21,62 +21,63 @@ import { GrGrow } from "react-icons/gr";
 import { GiAbstract030 } from "react-icons/gi";
 import { TestimonialCarousel } from "@/components/home/TestimonialCarousel";
 import { AvatarPath } from "@/components/home/AvatarPath";
+import { RollingWords } from "@/components/home/RollingWords";
 
 const items: BentoItem[] = [
   {
-    title: "Performance",
+    title: "Candidate overview",
     subtitle: "Survey smarter with AI-powered insights.",
-    icon: <FiTrendingUp />,
-    image: "/images/bento/engagement.png",
-    bg: "#CAF5EF",
-    color: "#003d3d",
-    frame: "linear-gradient(180deg, #7FE0D280, #CAF5EF)",
-    arrow: "#9FE6DB",
-    span: "md:col-span-3 md:row-span-3",
-  },
-  {
-    title: "Goals & OKRs",
-    subtitle: "Make career progression clear.",
     icon: <RiTargetLine />,
-    image: "/images/bento/grow.png",
-    bg: "#F4F8DE",
-    color: "#515c0b",
-    frame: "linear-gradient(180deg, #DBEB7A80, #F4F8DE)",
-    arrow: "#DBEB7A",
+    image: "/images/candidate-dash.png",
+    bg: "#b3e0ff",
+    color: "#284152",
+    frame: "linear-gradient(180deg, #7caff299, #b3e0ff)",
+    arrow: "#7caff2",
     span: "md:col-span-3 md:row-span-3",
   },
   {
-    title: "Engagements",
+    title: "HR Dashboard",
+    subtitle: "Make career progression clear.",
+    icon: <FiTrendingUp />,
+    image: "/images/hr-dash.png",
+    bg: "#ffe4ad",
+    color: "#7a4e0a",
+    frame: "linear-gradient(180deg, #ffc56199, #ffe4ad)",
+    arrow: "#ffc561",
+    span: "md:col-span-3 md:row-span-3",
+  },
+  {
+    title: "Capability",
     subtitle: "Strategic pay that retains your best.",
-    icon: <FaPeopleGroup />,
-    image: "/images/bento/comp.png",
-    bg: "#FEEDFF",
-    color: "#7a2251",
-    frame: "linear-gradient(180deg, #FAB8FF80, #FEEDFF)",
-    arrow: "#FAB8FF",
+    icon: <GrGrow />,
+    image: "/images/cabability.png",
+    bg: "#b3edad",
+    color: "#2a4e1c",
+    frame: "linear-gradient(180deg, #79e07999, #b3edad)",
+    arrow: "#79e079",
     span: "md:col-span-2 md:row-span-2",
   },
   {
-    title: "Grow",
+    title: "Contextual",
     subtitle: "Strategic pay that retains your best.",
-    icon: <GrGrow />,
-    image: "/images/bento/comp.png",
-    bg: "#FFF7D6",
-    color: "#a36a14",
-    frame: "linear-gradient(180deg, #FFDD9980, #FFF7D6)",
-    arrow: "#FFDD99",
+    icon:<GiAbstract030 /> ,
+    image: "/images/contextual.png",
+    bg: "#fcc7ff",
+    color: "#7a2251",
+    frame: "linear-gradient(180deg, #e775f099, #fcc7ff)",
+    arrow: "#e775f0",
     span: "md:col-span-2 md:row-span-2",
   },
 
   {
-    title: "Compensation",
+    title: "Behavioral",
     subtitle: "Strategic pay that retains your best.",
-    icon: <GiAbstract030 />,
-    image: "/images/bento/comp.png",
-    bg: "#D9F8D6",
-    color: "#2a4e1c",
-    frame: "linear-gradient(180deg, #A9EBA980, #D9F8D6)",
-    arrow: "#A9EBA9",
+    icon: <FaPeopleGroup />,
+    image: "/images/cabability.png",
+    bg: "#ffbdb8",
+    color: "#7a2251",
+    frame: "linear-gradient(180deg, #f06a6099, #ffbdb8)",
+    arrow: "#f06a60",
     span: "md:col-span-2 md:row-span-2",
   },
 ];
@@ -199,10 +200,13 @@ export default async function Home() {
     <>
       {/* Hero: text + interactive scenario */}
 <section className="section overflow-x-clip !h-screen !flex !justify-center !items-center !pt-0 sm:!pt-0 !pb-20">        <div className="container-x  !grid !grid-cols-2 items-start gap-12 !h-full py-10 lg:grid-cols-2 lg:gap-16 justify-center mx-auto">
-          <div className="!flex !flex-col !items-start !justify-start pt-5">
+          <div className="!flex !flex-col !items-start !justify-center pt-10">
             <h1 className="h-display !font-normal leading-[4rem] !flex !justify-center rise">
-              Measure how people decide, not just what they know.
-            </h1>
+  <span>
+    Measure how people decide, not just what they{" "}
+    <RollingWords words={["know", "show"]} />.
+  </span>
+</h1>
             <p
               className="lead !text-black !text-start max-w-[500px] rise mt-6"
               style={delay(1)}
@@ -232,7 +236,16 @@ export default async function Home() {
             className="rise h-full relative flex justify-center items-center w-full"
             style={delay(3)}
           >
-            <AvatarPath />
+            <div className="bg-black/10 rounded-3xl h-[70vh] p-0 overflow-hidden">
+  <video
+    src="/videos/hero2.mp4"
+    className="w-full h-auto rounded-2xl object-cover overflow-hidden"
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
           </div>
         </div>
       </section>
@@ -343,7 +356,7 @@ export default async function Home() {
         </section>
       </div> */}
 
-      <section className="max-w-[80vw] my-[5rem] mb-40 mx-auto">
+      <section className="max-w-[80vw] my-[5rem]  mx-auto">
         <div className="flex justify-between border-y border-black/10 py-10">
           {stats.map((s, i) => (
             <div
@@ -426,7 +439,7 @@ export default async function Home() {
                     <a
                       key={c.label}
                       href={c.href}
-                      className={`w-full rounded-[10px] px-[18px] py-[10px] text-center text-[.875rem] transition-colors ${ctaStyles[c.variant]}`}
+                      className={`w-full rounded-full px-[18px] py-[10px] text-center text-[.875rem] transition-colors ${ctaStyles[c.variant]}`}
                     >
                       {c.label}
                     </a>
