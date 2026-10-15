@@ -11,7 +11,7 @@ export const insightsData: Insight[] = [
     author: "EIF Team", // PLACEHOLDER
     publishedAt: "2026-09-15",
     readingMinutes: 5,
-    image:"/images/gradients/1.jpg",
+    image:"/images/gradients/i1.jpg",
     body: [
       "PLACEHOLDER: Opening paragraph about why single-answer assessments miss how people actually decide at work.",
       "PLACEHOLDER: Explain how each response moves a score in several dimensions instead of passing or failing.",
@@ -27,7 +27,7 @@ export const insightsData: Insight[] = [
     author: "EIF Team",
     publishedAt: "2026-09-02",
     readingMinutes: 4,
-    image:"/images/gradients/2.jpg",
+    image:"/images/gradients/i2.jpg",
     body: ["PLACEHOLDER: Article body.", "PLACEHOLDER: Article body."],
   },
   {
@@ -39,7 +39,7 @@ export const insightsData: Insight[] = [
     author: "EIF Team",
     publishedAt: "2026-08-20",
     readingMinutes: 4,
-    image:"/images/gradients/3.jpg",
+    image:"/images/gradients/i3.jpg",
     body: ["PLACEHOLDER: Article body.", "PLACEHOLDER: Article body."],
   },
 
@@ -53,7 +53,7 @@ export const insightsData: Insight[] = [
   author: "EIF Team",
   publishedAt: "2026-08-08",
   readingMinutes: 5,
-  image:"/images/gradients/4.jpg",
+  image:"/images/gradients/i4.jpg",
   body: [
     "PLACEHOLDER: Explore how pressure can influence judgement, priorities, and communication.",
     "PLACEHOLDER: Explain how realistic scenarios capture these decision patterns in context.",

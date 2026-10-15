@@ -31,12 +31,7 @@ export function InsightsScroll({ posts }: { posts: Insight[] }) {
     <section className="section !pt-0">
       <div className="flex w-full max-w-[80vw]  mx-auto ">
         <div className="flex flex-col gap-3">
-          <h2 className="h-display !font-normal">Latest news</h2>
-          <Link
-            href="/insights"
-            className="flex items-center gap-1 text-sm text-neutral-600 "
-          >
-            <span className="group mb-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#6161ff]/10 py-2 pl-4 pr-2 text-[0.9rem] font-medium text-[#3a3ac4]">
+            <span className="group w-fit inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#6161ff]/10 py-2 pl-4 pr-2 text-[0.9rem] font-medium text-[#3a3ac4]">
               View all
               <span className="relative flex size-6 items-center justify-center overflow-hidden rounded-full bg-[#6161ff]/25">
                 <span className="absolute inset-0 flex items-center justify-center text-[0.7rem] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-full">
@@ -47,14 +42,18 @@ export function InsightsScroll({ posts }: { posts: Insight[] }) {
                 </span>
               </span>
             </span>
+          <h2 className="h-display !font-normal">Latest news</h2>
+          <Link
+            href="/insights"
+            className="flex items-center gap-1 text-sm text-neutral-600 "
+          >
+            
           </Link>
         </div>
         <div className="flex w-1/2 ml-auto  justify-end">
           <p className="max-w-[440px] text-start text-[1.4rem] leading-8 text-black md:justify-self-end">
             {/* PLACEHOLDER copy */}
-            One platform, three lenses on how people decide. See behaviour,
-            context and capability side by side, for individuals and for whole
-            teams.
+            Explore the latest insights, industry trends, expert perspectives, and blogs to stay informed and discover new ideas.
           </p>
         </div>
       </div>

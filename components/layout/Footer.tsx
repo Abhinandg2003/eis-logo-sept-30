@@ -37,7 +37,7 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="mt-10 border-t border-black/10 bg-[#fdfdfd]">
+    <footer className="mt-10  bg-[#fff]">
       <div className="mx-auto max-w-[80vw] px-5 pb-8 pt-16">
         {/* Top: brand + pitch + columns */}
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
@@ -47,7 +47,7 @@ export function Footer() {
               className="h-14 w-auto"
               alt={site.name}
             />
-            <p className="text-[0.95rem] leading-relaxed text-neutral-600">
+            <p className="text-[1rem] leading-relaxed text-neutral-600">
               Measure how people decide, not just what they know. Scenario-based
               insights for employees and employers.
             </p>
@@ -62,7 +62,7 @@ export function Footer() {
           >
             {columns.map((col) => (
               <div key={col.title}>
-                <h3 className="mb-4 text-sm font-medium text-neutral-900">
+                <h3 className="mb-4 text-md font-medium text-neutral-900">
                   {col.title}
                 </h3>
                 <ul className="flex flex-col gap-3">
@@ -70,7 +70,7 @@ export function Footer() {
                     <li key={l.label}>
                       <Link
                         href={l.href}
-                        className="text-sm text-neutral-500 transition-colors duration-300 hover:text-neutral-900"
+                        className="text-md text-neutral-500 transition-colors duration-300 hover:text-neutral-900"
                       >
                         {l.label}
                       </Link>
@@ -83,7 +83,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 flex flex-col gap-5 border-t border-black/10 pt-6 text-sm text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-5  pt-6 text-sm text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
