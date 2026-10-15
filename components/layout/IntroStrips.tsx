@@ -39,8 +39,8 @@ export function IntroStrips() {
       {Array.from({ length: STRIPS }, (_, i) => (
         <m.div
           key={i}
-          className="h-full bg-[#111]"
-          style={{ transformOrigin: "bottom", width: "calc(100% + 1px)" }}
+          className="h-full bg-gradient-to-b from-[#000] to-[#333]"
+          style={{ transformOrigin: "top", width: "calc(100% + 1px)" }}
           initial={{ scaleY: 1 }}
           animate={{ scaleY: 0 }}
           transition={{

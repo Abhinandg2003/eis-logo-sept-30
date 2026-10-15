@@ -78,8 +78,8 @@ export function BentoGrid({
             <div className="relative z-10 mt-6 min-h-0 flex-1">
               <img
                 src={item.image}
-                alt=""
-                className={`mx-auto w-4/5 origin-top transition-transform duration-700 ${EASE} group-hover:scale-105`}
+                alt={item.image}
+                className={`mx-auto h-full -mb-5  object-cover  mt-8 min-w-[80%] overflow-visible origin-top transition-transform duration-700 ${EASE} group-hover:scale-102`}
               />
             </div>
           )}

@@ -302,8 +302,8 @@ html.intro-lock { overflow: hidden; background: #111; }
 
 :root {
   --marquee-speed: 30s;      /* one full loop (higher = slower) */
-  --logo-w: 200px;           /* every logo gets this exact box */
-  --logo-h: 60px;
+  --logo-w: 150px;           /* every logo gets this exact box */
+  --logo-h: 70px;
 }
 
 @layer components {

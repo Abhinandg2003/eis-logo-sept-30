@@ -17,10 +17,10 @@ type LogoMarqueeProps = {
   className?: string;
 };
 
-export function LogoMarquee({ speed = 30, className }: LogoMarqueeProps) {
+export function LogoMarquee({ speed = 50, className }: LogoMarqueeProps) {
   return (
     <div
-      className={cn("logo-marquee", className)}
+      className={cn("logo-marquee border-y border-black/5 py-3", className)}
       style={{ "--marquee-speed": `${speed}s` } as React.CSSProperties}
     >
       <div className="logo-marquee__track">

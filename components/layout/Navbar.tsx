@@ -24,15 +24,15 @@ export function Navbar() {
         >
           {/* Icon sits on top (z-10) so the wordmark appears to come out from behind it */}
           <img
-            src="/images/eis-web7.png"
-            className="relative z-10 h-10"
+            src="/images/eis-web7.svg"
+            className="relative z-10 h-7"
             alt=""
           />
 
           {/* Mask: clips the wordmark while it's still to the left */}
           <span className="flex items-center overflow-hidden">
             <m.img
-              src="/images/frameworks.png"
+              src="/images/frameworks.svg"
               alt=""
               className="h-8"
               initial={{ x: "-110%" }}

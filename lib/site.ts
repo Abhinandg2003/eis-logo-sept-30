@@ -7,6 +7,13 @@ export const site = {
   nav: [
     { href: "/about", label: "About" },
     { href: "/insights", label: "Insights" },
+        { href: "/insights", label: "Why us" },
+
+            { href: "/insights", label: "Resources" },
+
+                { href: "/insights", label: "Pricing" },
+
+
   ],
   cta: { href: "/#join", label: "Join for free" }, // PLACEHOLDER: point to your sign-up route
 };

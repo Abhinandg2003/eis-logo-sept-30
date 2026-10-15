@@ -14,7 +14,7 @@ import ArrowButton from "@/components/ui/Arrowbutton";
 import { LogoMarquee } from "@/components/home/LogoMarquee";
 
 import { BentoGrid, type BentoItem } from "@/components/home/bento";
-import { FiHeart, FiTrendingUp, FiUsers } from "react-icons/fi";
+import { FiArrowRight, FiHeart, FiTrendingUp, FiUsers } from "react-icons/fi";
 import { RiTargetLine } from "react-icons/ri";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { GrGrow } from "react-icons/gr";
@@ -22,13 +22,15 @@ import { GiAbstract030 } from "react-icons/gi";
 import { TestimonialCarousel } from "@/components/home/TestimonialCarousel";
 import { AvatarPath } from "@/components/home/AvatarPath";
 import { RollingWords } from "@/components/home/RollingWords";
+import { InsightsScroll } from "@/components/home/InsightsScroll";
+import { RollingNumbercolor } from "@/components/home/RollingNumberColor";
 
 const items: BentoItem[] = [
   {
     title: "Candidate overview",
     subtitle: "Survey smarter with AI-powered insights.",
     icon: <RiTargetLine />,
-    image: "/images/candidate-dash.png",
+    image: "/images/bento1.webp",
     bg: "#b3e0ff",
     color: "#284152",
     frame: "linear-gradient(180deg, #7caff299, #b3e0ff)",
@@ -39,7 +41,7 @@ const items: BentoItem[] = [
     title: "HR Dashboard",
     subtitle: "Make career progression clear.",
     icon: <FiTrendingUp />,
-    image: "/images/hr-dash.png",
+    image: "/images/bento2.webp",
     bg: "#ffe4ad",
     color: "#7a4e0a",
     frame: "linear-gradient(180deg, #ffc56199, #ffe4ad)",
@@ -50,7 +52,7 @@ const items: BentoItem[] = [
     title: "Capability",
     subtitle: "Strategic pay that retains your best.",
     icon: <GrGrow />,
-    image: "/images/cabability.png",
+    image: "/images/bento3.webp",
     bg: "#b3edad",
     color: "#2a4e1c",
     frame: "linear-gradient(180deg, #79e07999, #b3edad)",
@@ -60,8 +62,8 @@ const items: BentoItem[] = [
   {
     title: "Contextual",
     subtitle: "Strategic pay that retains your best.",
-    icon:<GiAbstract030 /> ,
-    image: "/images/contextual.png",
+    icon: <GiAbstract030 />,
+    image: "/images/bento4.webp",
     bg: "#fcc7ff",
     color: "#7a2251",
     frame: "linear-gradient(180deg, #e775f099, #fcc7ff)",
@@ -73,7 +75,7 @@ const items: BentoItem[] = [
     title: "Behavioral",
     subtitle: "Strategic pay that retains your best.",
     icon: <FaPeopleGroup />,
-    image: "/images/cabability.png",
+    image: "/images/bento5.webp",
     bg: "#ffbdb8",
     color: "#7a2251",
     frame: "linear-gradient(180deg, #f06a6099, #ffbdb8)",
@@ -176,9 +178,9 @@ const plans = [
 
 // Stats row. Edit the numbers and labels here.
 const stats = [
-  { value: "400M+", label: "queries processed daily" },
-  { value: "200K", label: "GPUs in Colossus" },
-  { value: "122", label: "Days to build in Colossus" },
+  { value: "400M+", label: "queries processed daily",color:"#FFBDB890", text:"#7a2251" , border: "#7a225120"},
+  { value: "200K", label: "GPUs in Colossus",color:"#FFE4AD90" , text:"#7a4e0a" , border: "#7a4e0a20"},
+  { value: "122", label: "Days to build in Colossus" ,color:"#B3EDAD90" , text:"#2a4e1c" , border: "#2a4e1c20" },
 ];
 
 const delay = (n: number) => ({ "--i": n }) as React.CSSProperties; // stagger for .rise
@@ -199,20 +201,22 @@ export default async function Home() {
   return (
     <>
       {/* Hero: text + interactive scenario */}
-<section className="section overflow-x-clip !h-screen !flex !justify-center !items-center !pt-0 sm:!pt-0 !pb-20">        <div className="container-x  !grid !grid-cols-2 items-start gap-12 !h-full py-10 lg:grid-cols-2 lg:gap-16 justify-center mx-auto">
+      <section className="section overflow-x-clip !h-screen !flex !justify-center !items-center !pt-0 sm:!pt-0 !pb-20">
+        {" "}
+        <div className="container-x  !grid !grid-cols-2 items-start gap-12 !h-full py-10 lg:grid-cols-2 lg:gap-16 justify-center mx-auto">
           <div className="!flex !flex-col !items-start !justify-center pt-10">
-            <h1 className="h-display !font-normal leading-[4rem] !flex !justify-center rise">
-  <span>
-    Measure how people decide, not just what they{" "}
-    <RollingWords words={["know", "show"]} />.
-  </span>
-</h1>
+            <h1 className="h-display !font-normal leading-[4.2rem] !flex !justify-center rise">
+              <span>
+                Measure how people decide, not just what they{" "}
+                <RollingWords words={["know", "show"]} />
+              </span>
+            </h1>
             <p
               className="lead !text-black !text-start max-w-[500px] rise mt-6"
               style={delay(1)}
             >
               {site.fullName} Measure how employees make smarter decisions,
-              improve performance, and contribute to better business outcomes.
+              improve performance, and contribute to better outcomes.
             </p>
 
             <div
@@ -237,28 +241,55 @@ export default async function Home() {
             style={delay(3)}
           >
             <div className="bg-black/10 rounded-3xl h-[70vh] p-0 overflow-hidden">
-  <video
-    src="/videos/hero2.mp4"
-    className="w-full h-auto rounded-2xl object-cover overflow-hidden"
-    autoPlay
-    loop
-    muted
-    playsInline
-  />
-</div>
+              <video
+                src="/videos/hero2.mp4"
+                className="w-full h-auto rounded-2xl object-cover overflow-hidden"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            </div>
           </div>
         </div>
       </section>
 
       <section className="pb-16">
-        <p className="mb-15 text-center text-lg text-black ">
+        {/* <p className="mb-8 text-center  text-[1.4rem] text-black ">
           Trusted by teams at
-        </p>
+        </p> */}
         <LogoMarquee />
       </section>
 
-      <section className="h-screen mx-auto flex justify-center items-center  max-w-[90vw] ">
-        <div className="w-full mx-8">
+      <section className="mx-auto flex min-h-screen max-w-[90vw] flex-col justify-center gap-12 py-24">
+        <div className="mx-8 flex flex-col gap-12">
+          {/* Header: two columns */}
+          <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-16">
+            <div className="flex flex-col items-start justify-start text-start">
+              <span className="group mb-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#6161ff]/10 py-2 pl-4 pr-2 text-[0.9rem] font-medium text-[#3a3ac4]">
+                Platform overview
+                <span className="relative flex size-6 items-center justify-center overflow-hidden rounded-full bg-[#6161ff]/25">
+                  <span className="absolute inset-0 flex items-center justify-center text-[0.7rem] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-full">
+                    <FiArrowRight aria-hidden />
+                  </span>
+                  <span className="absolute inset-0 flex -translate-x-full items-center justify-center text-[0.7rem] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0">
+                    <FiArrowRight aria-hidden />
+                  </span>
+                </span>
+              </span>
+              <h2 className=" h-display  !text-start !font-normal">
+                Get to know <br /> Ei frameworks
+              </h2>
+            </div>
+
+            <p className="max-w-[440px] text-start text-[1.4rem] leading-8 text-black md:justify-self-end">
+              {/* PLACEHOLDER copy */}
+              One platform, three lenses on how people decide. See behaviour,
+              context and capability side by side, for individuals and for whole
+              teams.
+            </p>
+          </div>
+
           <BentoGrid items={items} />
         </div>
       </section>
@@ -356,71 +387,90 @@ export default async function Home() {
         </section>
       </div> */}
 
-      <section className="max-w-[80vw] my-[5rem]  mx-auto">
-        <div className="flex justify-between border-y border-black/10 py-10">
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              // The first column has no left border or padding; the others keep your divider
-              className={`flex min-w-[25vw] flex-col justify-start gap-3 ${i > 0 ? "border-l border-black/10 pl-10" : ""}`}
-            >
-              {/* text-5xl sets the size. The roll scales with it automatically */}
-              <p className="text-5xl">
-                <RollingNumber value={s.value} delay={i * 0.15} />
-              </p>
-              <p className="text-[0.9rem] text-black/70">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* <section className="max-w-[80vw] my-[5rem] mx-auto">
+  <div className="flex justify-between py-10">
+    {stats.map((s, i) => (
+      <div
+        key={s.label}
+        className="flex min-w-[25vw] flex-col items-center justify-start gap-3 rounded-3xl px-6 py-8"
+        style={{
+          border: `1px solid ${s.border}`,
+          backgroundColor: s.color,
+          color: s.text,
+        }}
+      >
+        <p className="text-5xl text-center">
+          <RollingNumbercolor value={s.value} delay={i * 0.15} />
+        </p>
+
+        <p className="text-[0.9rem] text-center opacity-70">
+          {s.label}
+        </p>
+      </div>
+    ))}
+  </div>
+</section> */}
 
       <section className="py-20">
+
+
+        <div className="grid grid-cols-1  max-w-[85vw] mb-10 mx-auto items-end gap-8 md:grid-cols-2 md:gap-16">
+            <div className="flex flex-col items-start  justify-start text-start ">
+              <span className="group mb-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#6161ff]/10 py-2 pl-4 pr-2 text-[0.9rem] font-medium text-[#3a3ac4]">
+                Testimonials
+                <span className="relative flex size-6 items-center justify-center overflow-hidden rounded-full bg-[#6161ff]/25">
+                  <span className="absolute inset-0 flex items-center justify-center text-[0.7rem] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-full">
+                    <FiArrowRight aria-hidden />
+                  </span>
+                  <span className="absolute inset-0 flex -translate-x-full items-center justify-center text-[0.7rem] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0">
+                    <FiArrowRight aria-hidden />
+                  </span>
+                </span>
+              </span>
+              <h2 className=" h-display  !text-start !font-normal">
+                What our users <br /> 
+                has to say
+              </h2>
+            </div>
+
+            <p className="max-w-[440px] text-start text-[1.4rem] leading-8 text-black md:justify-self-end">
+              {/* PLACEHOLDER copy */}
+              One platform, three lenses on how people decide. See behaviour,
+              context and capability side by side, for individuals and for whole
+              teams.
+            </p>
+          </div>
         <TestimonialCarousel />
       </section>
 
       {/* Latest insights (from CMS layer) */}
       <section className="section  !pt-0 ">
-        <div className="container-xc !px-0 !max-w-[80vw] mx-auto !py-25 border-b border-black/10">
-          <div className="flex items-end justify-between gap-4 !mb-10">
-            <h2 className="h-section  !font-normal ">Latest news</h2>
-            <Link
-              href="/insights"
-              className="text-sm flex items-center gap-1 text-neutral-600 underline-offset-4 hover:text-neutral-900 hover:underline"
-            >
-              View all <IoIosArrowForward />
-            </Link>
-          </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {latest.map((p) => (
-              <InsightCard key={p.slug} post={p} />
-            ))}
-          </div>
-        </div>
+        <InsightsScroll posts={latest} />
       </section>
 
       {/* <CtaBand /> */}
 
       <section className="mt-10 ">
         <div className="max-w-[80vw] mx-auto mb-20 ">
-          <h2 className="h-section text-center  mb-10 !font-normal ">
+          <h2 className="h-display !text-5xl text-center  mb-10 !font-normal ">
             Choose how to get started
           </h2>
 
           <div className="flex flex-col gap-5 md:flex-row">
-            {plans.map((plan) => (
-              <div
-                key={plan.title}
-                className="flex min-h-[60vh] w-full flex-col gap-4 rounded-xl border border-black/10 p-[3vw]"
-              >
-                <h3 className="text-start text-2xl text-black">{plan.title}</h3>
-                <p className="text-md w-full  pb-7">{plan.intro}</p>
+            {plans.map((plan, pi) => (
+  <div
+    key={plan.title}
+    className="flex min-h-[60vh] w-full flex-col gap-4 rounded-xl border border-black/10 p-[3vw]"
+  >
+                <h3 className="text-start text-3xl text-black">{plan.title}</h3>
+                <p className="text-lg w-full  pb-0">{plan.intro}</p>
 
                 {/* The list sits between the heading and the CTA */}
                 <ul className="flex flex-col gap-3 pt-3">
                   {plan.points.map((pt) => (
                     <li
                       key={pt}
-                      className="flex items-start gap-3 text-[0.9rem] text-black font-light"
+                      className="flex items-start gap-3 text-md text-black font-light"
                     >
                       {/* Tick before each point. Change the colour class to text-black for pure monochrome */}
                       <IoMdCheckmark
@@ -434,17 +484,18 @@ export default async function Home() {
 
                 {/* mt-auto pushes the CTA to the bottom of the card */}
                 {/* mt-auto keeps the buttons at the bottom of the card */}
-                <div className="mt-auto flex flex-col gap-2">
-                  {plan.ctas.map((c) => (
-                    <a
-                      key={c.label}
-                      href={c.href}
-                      className={`w-full rounded-full px-[18px] py-[10px] text-center text-[.875rem] transition-colors ${ctaStyles[c.variant]}`}
-                    >
-                      {c.label}
-                    </a>
-                  ))}
-                </div>
+                <div className="mt-5 flex flex-col gap-2">
+      {plan.ctas.map((c) => (
+        <ArrowButton
+          key={c.label}
+          href={c.href}
+          variant={pi === 1 ? "ghost" : undefined}
+          className="!w-full !py-3 text-md"
+        >
+          {c.label}
+        </ArrowButton>
+      ))}
+    </div>
               </div>
             ))}
           </div>
